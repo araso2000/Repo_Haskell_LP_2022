@@ -75,7 +75,7 @@ mayusAMinus x = [(toLower z) | z <- x,((ord z) > 64 && (ord z) < 91)]
 listaAscii :: [Char] -> [Int]
 listaAscii x = [(ord y) | y <- x]
 
---3.14
+--3.15
 mensajeLista :: [Int] -> String
 mensajeLista x = "Primer elemento: " ++ (head x) ++ ". Longitud de la lista: " ++ (length x)
 
