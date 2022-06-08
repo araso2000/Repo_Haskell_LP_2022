@@ -10,15 +10,18 @@ ordenadosMenor x y z =
 		else False
 		
 --3.2
---ordenarTupla :: (Int, Int, Int) -> (Int, Int, Int)
---ordenarTupla x y z =
---		if ordenadosMenor x y z
---		then x y z
---		else 
+ordenarTupla :: (Int, Int, Int) -> (Int, Int, Int)
+ordenarTupla (x,y,z)
+		| ((x <= y) && (y <= z)) = (x, y, z)
+		| ((x <= z) && (z <= y)) = (x, z, y)
+		| ((y <= x) && (x <= z)) = (y, x, z)
+		| ((y <= z) && (z <= x)) = (y, z, x)
+		| ((z <= x) && (x <= y)) = (z, x, y)
+		| otherwise = (z, y, x)
 
 --3.3
---descomponerReal :: 	Float -> Float
---descomponerReal x = 1 - ((ceiling x) - x)
+--descomponerReal :: Float -> Float
+--descomponerReal x = (ceiling x)
 
 --3.4
 divisores :: Int -> [Int]
@@ -53,8 +56,12 @@ primosMenorIgual x = [y | y <- [x,x-1..1], (esPrimo y)]
 --codificacionTuplas (x,y) = [x |
 
 --3.10
-filtrarTuplas :: [(Int,Int)] -> Int -> [(Int,Int)]
-filtrarTuplas (x, y) n = [(z, t) | z <- x, t <- y, (t `div` 2 /= 0) && (t > n)]
+--filtrarTuplas :: [(Int,Int)] -> Int -> [(Int,Int)]
+--filtrarTuplas (x, y) n = [(z, t) | z <- x, t <- y, (t `div` 2 /= 0) && (t > n)]
+
+--3.11
+--pitagoras :: [(Int, Int, Int)] -> Int
+--pitagoras (x,y,z) = [t | t <- [1..100], (x^2 + y^2) == (z^2)]
  
 --3.12
 esMayus :: Char -> Bool
@@ -67,6 +74,10 @@ mayusAMinus x = [(toLower z) | z <- x,((ord z) > 64 && (ord z) < 91)]
 --3.14
 listaAscii :: [Char] -> [Int]
 listaAscii x = [(ord y) | y <- x]
+
+--3.14
+mensajeLista :: [Int] -> String
+mensajeLista x = "Primer elemento: " ++ (head x) ++ ". Longitud de la lista: " ++ (length x)
 
 
 
