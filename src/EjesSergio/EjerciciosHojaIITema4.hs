@@ -1,11 +1,3 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-
-
-
-
-
-
-
 module EjerciciosHojaIITema4 where
 import Data.Ratio ( (%) )
 

@@ -1,4 +1,4 @@
-module Resumen2 where
+module ResumenTema3 where
 
 funcion1 :: Int -> Int
 funcion1 x = x + x
