@@ -147,14 +147,3 @@ f x = a + (if x <= 1 then 1 else a)
 f:: Int -> Int
 f x = let a = g(cuadrado(max x 4))
 		in a + (if x <= 1 then 1 else a)
-
-
-
-
-
-
-
-
-
-			
-

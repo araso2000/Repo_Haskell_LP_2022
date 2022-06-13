@@ -146,9 +146,65 @@ contarConsonantes :: String -> Int
 contarConsonantes str = length[x | x <- str, (esConsonante x) == False]
 
 --3.10
-mersenne :: Int -> [Int]
-mersenne n = 
 
+
+--3.11
+listasIguales :: [Int] -> [Int] -> Bool
+listasIguales (x:xs) (y:ys) = if (length [(a,b) | a <- xs, b <- ys, a == b]) == length xs then True else False
+
+--3.12
+cabeza :: [Int] -> Int
+cabeza (x:_) = x
+
+--3.13
+cola :: [Int] -> [Int]
+cola (_:xs) = xs
+
+--3.14
+maximo :: Int -> Int -> Int
+maximo x y 
+		| x < y = y
+		| x > y = x
+		| x == y = 0
+		
+mayorDivision :: Int -> Int -> Int
+mayorDivision a b = maximo (a `div` b) (a `rem` b)
+
+--3.15
+sumaTipos :: Int -> Float -> Float
+sumaTipos a b = fromIntegral(a) + b
+
+--3.16
+cuadruple :: Int -> Int
+cuadruple a = 4*a
+
+--3.18
+esPar :: Int -> Bool
+esPar x = if (x `rem` 2) == 0 then True else False
+
+cuadrado' :: [Int] -> [Int]
+cuadrado' (x:xs) = [y*y | y <- xs, esPar y]
+
+--3.19
+posicionEnLista :: [Int] -> [(Int,Int)]
+posicionEnLista x = zip x [0..(length x)-1]
+
+--3.20
+long :: [Int] -> Int
+long [] = 0
+long l = sum [1 | _ <- l]
+
+--3.21
+contiene :: Int -> [Int] -> Bool
+contiene n (x:xs) = if (length [y | y <- xs, n==y]) > 0 then True else False
+
+--3.22
+primeros :: [(Char,Int)] -> String
+primeros l = [x | (x,_) <- l]
+
+--3.23
+primerosPares :: [(Char,Int)] -> String
+primerosPares l = [x | (x,y) <- l, even y]
 
 --HOJA 4.1
 
