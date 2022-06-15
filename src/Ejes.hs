@@ -330,5 +330,16 @@ listaPrimos (x:xs) = filter esPrimo xs
 
 --Hoja 4.3
 
--
+--4.1
+mezclarEnTernas :: [a] -> [b] -> [(a,b,b)]
+mezclarEnTernas _ [] = []
+mezclarEnTernas [] _ = []
+mezclarEnTernas l@(x:xs) k@(y:z:ys) = if length (xs) >= 1 && length (ys) >= 2 then (x,y,z) : mezclarEnTernas xs ys else [(x,y,z)]
 
+--4.2
+alFinal :: a -> [a] -> [a]
+alFinal n l = l ++ [n]
+
+--4.3
+cogeMientras :: a -> [b] -> [b]
+cogeMientras y l@(x:xs) = if y x then x : cogeMientras y lista else cogeMientras y lista where lista = filter(/= x) xs
