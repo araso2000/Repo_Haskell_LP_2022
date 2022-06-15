@@ -206,6 +206,34 @@ primeros l = [x | (x,_) <- l]
 primerosPares :: [(Char,Int)] -> String
 primerosPares l = [x | (x,y) <- l, even y]
 
+--3.24
+partir :: Int -> [Int] -> ([Int],[Int])
+partir n l = ([l!!e | e <- [0..n-1]],[l!!e | e <- [n..length l -1]])
+
+--3.25
+insertar :: [Int] -> Int -> Int -> [Int]
+insertar l n p = [l!!x | x <- [0..p-1]] ++ [n] ++ [l!!y | y <- [p..length l -1]]
+
+--3.26
+codifica :: [Int] -> String
+codifica l = [texto pos | pos <- [0..length l -1]]
+	where	
+		texto :: Int -> Char
+		texto x
+			| even x = 'p'
+			| otherwise = 'i'
+			
+--3.27
+listaPotencias :: [Int] -> [Int]
+listaPotencias l = [x^p | x <- l, p <- [a,a-1..0]] where a = length l
+
+--3.28
+listaPerfectos :: Int -> Bool
+listaPerfectos n = if sumaDivisores(divisoresPropios n) == n then True else False
+
+listaPerfectos' :: Int -> [Int]
+listaPerfectos' n = [y | y <- [1..999999], (sumaDivisores(divisoresPropios y) == y)]
+
 --HOJA 4.1
 
 --4.1.
@@ -229,6 +257,20 @@ repeticiones (x:xs) = [y | y <- xs]
 
 --4.5
 
+--4.6
+digitos :: Int -> [Int]
+digitos = map digitToInt . show
+
+contieneCifra :: Int -> Int -> Bool
+contieneCifra a b = if elem a (digitos b) then True else False
+
+--4.7
+invertir :: Int -> [Int]
+invertir n = [y | y <- [a,a-1..1]] where a = length (digitos n)
+
+--4.8
+eliminarUltimos :: Int -> [Int] -> [Int]
+eliminarUltimos n l = [l!!y | y <- [0..n]] 
 
 
 --HOJA 4.2
@@ -284,4 +326,9 @@ listaPrimos (x:xs) = filter esPrimo xs
 --listaPrimos' :: [Int] -> [Int]
 --listaPrimos' [] = 0
 --listaPrimos' (x:xs) = 
+
+
+--Hoja 4.3
+
+-
 
