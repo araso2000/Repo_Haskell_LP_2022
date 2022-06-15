@@ -341,5 +341,16 @@ alFinal :: a -> [a] -> [a]
 alFinal n l = l ++ [n]
 
 --4.3
-cogeMientras :: a -> [b] -> [b]
-cogeMientras y l@(x:xs) = if y x then x : cogeMientras y lista else cogeMientras y lista where lista = filter(/= x) xs
+--cogeMientras :: a -> [b] -> [b]
+--cogeMientras y l@(x:xs) = if y x then x : cogeMientras y lista else cogeMientras y lista where lista = filter(/= x) xs
+
+
+--HOJA 5.1
+
+--5.1
+type Nombre = String
+type Edad = Integer
+type Persona = (Nombre, Edad)
+
+descuento :: Persona -> Bool
+descuento (nom,edad) = if edad >= 65 || edad <= 25 then True else False
