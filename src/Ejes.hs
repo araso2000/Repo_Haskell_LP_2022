@@ -352,5 +352,75 @@ type Nombre = String
 type Edad = Integer
 type Persona = (Nombre, Edad)
 
-descuento :: Persona -> Bool
-descuento (nom,edad) = if edad >= 65 || edad <= 25 then True else False
+descuentoAbono :: Persona -> Bool
+descuentoAbono (nom,edad) = if edad >= 65 || edad <= 25 then True else False
+
+--5.2 - SINONIMOS DE TIPO
+type Expediente = Int
+type Dni = String
+type Nota = Float
+type Alumno = (Dni, Expediente, Nota)
+
+aprobado :: Alumno -> Bool
+aprobado (dni,expediente,nota) = if nota < 5 then False else True
+
+calificacionAlumno :: Alumno -> String
+calificacionAlumno (dni,expe,nota)
+							| nota >= 5 && nota < 7 = "Expediente: " ++ show(expe) ++ ", Nota Acta: Aprobado"
+							| nota >= 7 && nota < 9 = "Expediente: " ++ show(expe) ++ ", Nota Acta: Notable"
+							| nota >= 9 = "Expediente: " ++ show(expe) ++ ", Nota Acta: Sobresaliente"
+							| otherwise = "Expediente: " ++ show(expe) ++ ", Nota Acta: Suspenso"
+							
+dameNota :: Alumno -> Float
+dameNota (dni,expe,nota) = nota
+
+sumaNotas :: [Float] -> Float
+sumaNotas = foldr (+) 0
+
+extraerNotas :: [Alumno] -> [Float]
+extraerNotas [] = []
+extraerNotas (x:xs) = [dameNota x] ++ extraerNotas xs
+
+mediaNotas :: [Alumno] -> Float
+mediaNotas l = sumaNotas(extraerNotas l) / fromIntegral((length l))
+
+--5.3 TIPO PRODUCTO
+
+--type Expediente = Int
+--type Dni = String
+--type Nota = Float
+--type Alumno = Alum Expediente Dni Nota
+
+--juan :: Alumno
+--juan = Alum 123 "12345678-A" 6.5
+
+--5.5
+data Complejo = Com Float Float deriving Show
+
+parteReal :: Complejo -> Float
+parteReal (Com a _) = a 
+
+sumaComplejos :: Complejo -> Complejo -> Complejo
+sumaComplejos (Com a b) (Com c d) = (Com (a+c) (b+d))
+
+--5.6 A
+type Num11 = Int
+type Num21 = Int
+type Racional1 = (Num11,Num21)
+
+equivalentes :: (Int,Int) -> [Racional1] -> [Racional1]
+equivalentes tupla ((a,b):xs) = [xs!!y | y <- [0..length xs -1], (fst(tupla) * a) == (snd(tupla) * b)]
+
+--5.6 B
+data Equivalente = R Int Int deriving Show
+
+--equivalentes :: (Int,Int) -> [Equivalente] -> [Equivalente]
+--equivalentes tupla (R a b:xs)
+
+
+--HOJA 5.2
+
+--5.1
+todosIguales' :: Eq a => [a] -> Bool
+todosIguales' [] = False
+todosIguales' l = if length([y | y <- l, ((l!!0) == y)]) == length(l) then True else False
